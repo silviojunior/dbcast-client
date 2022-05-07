@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DBCast</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="../css/formMovie.css" />
+  </head>
+
+  <body style="padding-top: 55px; padding-bottom: 120px;">
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+        <div class="container-fluid">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-mdb-toggle="collapse"
+            data-mdb-target="#navbarExample01"
+            aria-controls="navbarExample01"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <i class="fas fa-bars"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarExample01">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item active">
+                <a class="nav-link" aria-current="page" href="./index.html"
+                  >Início</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./formMovie.html">Cadastrar</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Listas</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Sobre</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main class="container">
+      <div class="row vh-100">
+        <div class="jumbotron jumbotron-fluid row align-items-start">
+          <div class="container">
+            <h1 class="display-4 text-center">Cadastro de Filmes</h1>
+            <p class="lead text-center">
+              Formulário de cadastro dos filmes e seus personagens relacionados
+            </p>
+          </div>
+        </div>
+
+        <form class="row align-items-center">
+          <div class="form-group">
+            <div class="form-group col-md-6 offset-md-3 mb-3">
+              <label for="iptTitle">Título</label>
+              <input
+                type="text"
+                class="form-control"
+                id="iptTitle"
+                placeholder="Qual o nome do filme?"
+              />
+            </div>
+            <div class="form-group col-md-6 offset-md-3 mb-3">
+              <label for="iptSubtitle">Subtítulo</label>
+              <input
+                type="text"
+                class="form-control"
+                id="iptSubtitle"
+                placeholder="O filme tem um subtítulo? Insira-o aqui."
+              />
+            </div>
+            <div class="form-group col-md-1 offset-md-3 mb-3 ipt-release-date">
+              <label for="iptReleaseDate">Lançamento</label>
+              <input
+                type="text"
+                class="form-control"
+                id="iptReleaseDate"
+                placeholder="dd/mm/aaaa"
+                maxlength="10"
+              />
+            </div>
+            <div class="form-group col-md-6 offset-md-3 mb-3">
+              <label for="iptDirection">Direção</label>
+              <input
+                type="text"
+                class="form-control"
+                id="iptDirection"
+                placeholder="Quem dirigiu o filme?"
+              />
+            </div>
+            <div class="form-group col-md-6 offset-md-3">
+              <label>Capa</label>
+            </div>
+            <div class="form-group col-md-6 offset-md-3 custom-file">
+              <input
+                type="file"
+                class="custom-file-input"
+                id="iptCustomFile"
+                lang="pt_BR"
+                title="Escolha uma capa"
+              />
+              <label
+                class="custom-file-label"
+                for="iptCustomFile"
+                style="opacity: 0.7"
+                >Escolha uma capa</label
+              >
+            </div>
+
+            <hr class="col-md-6 offset-md-3 mt-5 mb-4" />
+
+            <h5 class="col-md-5 offset-md-3">Personagens</h5>
+            <div class="row align-items-start mb-3">
+              <div class="col-md-5 offset-md-3 ps-1">
+                <input
+                  class="form-control mr-sm-2"
+                  type="search"
+                  placeholder="Encontre personagens"
+                  aria-label="Encontre personagens"
+                />
+              </div>
+              <div class="col">
+                <button
+                  class="btn btn-outline-success my-2 my-sm-0 px-4"
+                  type="submit"
+                >
+                  Buscar
+                </button>
+              </div>
+            </div>
+
+            <p class="col-md-6 offset-md-6 mt-3 mb-3">OU</p>
+
+            <div class="col-md-6 offset-md-3 mb-3">
+              <button
+                class="btn btn-success w-100"
+                type="button"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+                id="btnAddCharacter"
+              >
+                Adicione um Personagem
+              </button>
+
+              <!-- Modal -->
+              <div
+                class="modal fade"
+                id="exampleModal"
+                tabindex="-1"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">
+                        Modal title
+                      </h5>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
+                    </div>
+                    <div class="modal-body">...</div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                      >
+                        Close
+                      </button>
+                      <button type="button" class="btn btn-primary">
+                        Save changes
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-md-6 offset-md-8">
+              <button class="btn btn-primary px-4" type="submit">SALVAR</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </main>
+    <footer
+      class="text-center text-white fixed-bottom"
+      style="background-color: #21081a"
+    >
+      <!-- Grid container -->
+      <div class="container p-4"></div>
+      <!-- Grid container -->
+
+      <!-- Copyright -->
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+        © 2020 Copyright:
+        <a class="text-white" href="https://dbcast.com.br/">DBCast.com.br</a>
+      </div>
+      <!-- Copyright -->
+    </footer>
+  </body>
+</html>
