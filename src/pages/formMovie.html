@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="../css/formMovie.css" />
   </head>
 
-  <body style="padding-top: 55px; padding-bottom: 120px;">
+  <body>
     <header>
       <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
         <div class="container-fluid">
@@ -154,7 +154,7 @@
                 class="btn btn-success w-100"
                 type="button"
                 data-bs-toggle="modal"
-                data-bs-target="#exampleModal"
+                data-bs-target="#characterModal"
                 id="btnAddCharacter"
               >
                 Adicione um Personagem
@@ -163,16 +163,16 @@
               <!-- Modal -->
               <div
                 class="modal fade"
-                id="exampleModal"
+                id="characterModal"
                 tabindex="-1"
-                aria-labelledby="exampleModalLabel"
+                aria-labelledby="characterModalLabel"
                 aria-hidden="true"
               >
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">
-                        Modal title
+                      <h5 class="modal-title" id="characterModalLabel">
+                        Cadastro de Personagem
                       </h5>
                       <button
                         type="button"
@@ -181,17 +181,81 @@
                         aria-label="Close"
                       ></button>
                     </div>
-                    <div class="modal-body">...</div>
+                    <div class="modal-body">
+                      <div class="row align-items-center">
+                        <div class="form-group">
+                          <div class="form-group col-md-10 offset-md-1 mb-3">
+                            <label for="iptName">Nome</label>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="iptName"
+                              placeholder="Qual o nome do personagem?"
+                            />
+                          </div>
+                          <div class="form-group col-md-4 offset-md-1 mb-3">
+                            <label>Tipo</label>
+                            <select
+                              class="form-select"
+                              aria-label="Tipo de personagens"
+                              id="tipoPersonagem"
+                            >
+                              <option selected>-- Selecione --</option>
+                              <option value="1">Protagonista</option>
+                              <option value="2">Antagonista</option>
+                              <option value="3">Co-protagonista</option>
+                              <option value="4">Coadjuvante</option>
+                            </select>
+                          </div>
+                          <div class="form-group col-md-10 offset-md-1 mb-3">
+                            <label>Descrição</label>
+                            <div class="form-floating">
+                              <textarea
+                                class="form-control"
+                                placeholder="Descreva brevemente o personagem"
+                                id="floatingTextarea2"
+                                style="height: 100px"
+                              ></textarea>
+                              <label
+                                for="floatingTextarea2"
+                                style="opacity: 0.6"
+                                >Descreva o personagem</label
+                              >
+                            </div>
+                          </div>
+                          <div class="form-group col-md-10 offset-md-1">
+                            <label>Imagem</label>
+                          </div>
+                          <div
+                            class="form-group col-md-10 offset-md-1 mb-3 custom-file"
+                          >
+                            <input
+                              type="file"
+                              class="custom-file-input"
+                              id="iptCustomFile"
+                              lang="pt_BR"
+                              title="Escolha uma imagem"
+                            />
+                            <label
+                              class="custom-file-label"
+                              for="iptCustomFile"
+                              style="opacity: 0.6"
+                              >Procurar uma imagem</label
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                     <div class="modal-footer">
                       <button
                         type="button"
                         class="btn btn-secondary"
                         data-bs-dismiss="modal"
                       >
-                        Close
+                        Cancelar
                       </button>
                       <button type="button" class="btn btn-primary">
-                        Save changes
+                        Cadastrar
                       </button>
                     </div>
                   </div>
