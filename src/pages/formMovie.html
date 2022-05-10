@@ -18,6 +18,7 @@
     ></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="../css/formMovie.css" />
+    <script src="../js/main.js"></script>
   </head>
 
   <body>
@@ -190,6 +191,7 @@
                               type="text"
                               class="form-control"
                               id="iptName"
+                              name="iptName"
                               placeholder="Qual o nome do personagem?"
                             />
                           </div>
@@ -198,9 +200,12 @@
                             <select
                               class="form-select"
                               aria-label="Tipo de personagens"
-                              id="tipoPersonagem"
+                              id="iptCharacterTypes"
+                              name="iptCharacterTypes"
                             >
-                              <option selected>-- Selecione --</option>
+                              <option value="0" selected>
+                                -- Selecione --
+                              </option>
                               <option value="1">Protagonista</option>
                               <option value="2">Antagonista</option>
                               <option value="3">Co-protagonista</option>
@@ -213,12 +218,11 @@
                               <textarea
                                 class="form-control"
                                 placeholder="Descreva brevemente o personagem"
-                                id="floatingTextarea2"
+                                id="iptDescription"
                                 style="height: 100px"
+                                name="iptDescription"
                               ></textarea>
-                              <label
-                                for="floatingTextarea2"
-                                style="opacity: 0.6"
+                              <label for="iptDescription" style="opacity: 0.6"
                                 >Descreva o personagem</label
                               >
                             </div>
@@ -232,13 +236,14 @@
                             <input
                               type="file"
                               class="custom-file-input"
-                              id="iptCustomFile"
+                              id="iptCustomFileChar"
                               lang="pt_BR"
                               title="Escolha uma imagem"
+                              name="iptCustomFileChar"
                             />
                             <label
                               class="custom-file-label"
-                              for="iptCustomFile"
+                              for="iptCustomFileChar"
                               style="opacity: 0.6"
                               >Procurar uma imagem</label
                             >
@@ -250,11 +255,16 @@
                       <button
                         type="button"
                         class="btn btn-secondary"
+                        id="closeModal"
                         data-bs-dismiss="modal"
                       >
                         Cancelar
                       </button>
-                      <button type="button" class="btn btn-primary">
+                      <button
+                        type="button"
+                        class="btn btn-primary"
+                        onclick="saveCharacter()"
+                      >
                         Cadastrar
                       </button>
                     </div>
@@ -263,6 +273,7 @@
               </div>
             </div>
 
+            <div id="saida"></div>
             <div class="form-group col-md-6 offset-md-8">
               <button class="btn btn-primary px-4" type="submit">SALVAR</button>
             </div>
