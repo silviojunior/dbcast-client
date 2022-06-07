@@ -19,7 +19,7 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="../css/formMovie.css" />
     <link rel="stylesheet" href="../css/main.css">
-    <script src="../js/main.js"></script>
+    <script src="../js/listMovie.js"></script>
   </head>
 
   <body>
@@ -59,20 +59,30 @@
       </nav>
     </header>
     <main class="container">
+      <div class="jumbotron jumbotron-fluid row align-items-start">
+        <div class="container">
+          <h1 class="display-4 text-center">Lista de Filmes Cadastrados</h1>
+          <p class="lead text-center">
+            Relação dos filmes catalogados no DBCast e seus respectivos personagens
+          </p>
+        </div>
+      </div>
 
-        <div id="listMovies"></div>
+      <div class="container mt-4">
+        <div id="listMovies" class="row row-cols-auto"></div>
+      </div>
 
     </main>
     <footer
       class="text-center text-white fixed-bottom"
-      style="background-color: #21081a"
+      style="background-color: #000000"
     >
       <!-- Grid container -->
       <div class="container p-4"></div>
       <!-- Grid container -->
 
       <!-- Copyright -->
-      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+      <div class="text-center p-3" style="background-color: rgba(5, 1, 121, 0.386)">
         © 2020 Copyright:
         <a class="text-white" href="https://dbcast.com.br/">DBCast.com.br</a>
       </div>

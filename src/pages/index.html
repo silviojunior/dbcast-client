@@ -20,7 +20,7 @@
     <script src="../js/main.js"></script>
     <link rel="stylesheet" href="../css/main.css" />
   </head>
-  <body>
+  <body onload="getMovies()">
     <header>
       <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
         <div class="container-fluid">
@@ -58,11 +58,11 @@
 
       <div class="p-5 text-center bg-light">
         <h1 class="mb-3">DBCast</h1>
-        <h4 class="mb-3">Elencos & Filmes</h4>
+        <h4 class="mb-3">Filmes & Personagens</h4>
         <div class="input-group">
           <input
             type="search"
-            class="form-control rounded"
+            class="form-control rounded w-50"
             placeholder="O que gostaria de pesquisar?"
             aria-label="Buscar"
             aria-describedby="search-addon"
@@ -71,19 +71,19 @@
         </div>
       </div>
     </header>
-    <main class="container">
-      <div id="renderResults"></div>
+    <main class="container mt-4">
+      <div id="listMovies" class="row row-cols-auto"></div>
     </main>
     <footer
       class="text-center text-white fixed-bottom"
-      style="background-color: #21081a"
+      style="background-color: #000000"
     >
       <!-- Grid container -->
       <div class="container p-4"></div>
       <!-- Grid container -->
 
       <!-- Copyright -->
-      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+      <div class="text-center p-3" style="background-color: rgba(5, 1, 121, 0.386)">
         © 2020 Copyright:
         <a class="text-white" href="https://dbcast.com.br/">DBCast.com.br</a>
       </div>

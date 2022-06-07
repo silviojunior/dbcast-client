@@ -18,7 +18,7 @@
     ></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="../css/formMovie.css" />
-    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/main.css" />
     <script src="../js/main.js"></script>
   </head>
 
@@ -40,12 +40,12 @@
           <div class="collapse navbar-collapse" id="navbarExample01">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item active">
-                <a class="nav-link" href="./index.html"
-                  >Início</a
-                >
+                <a class="nav-link" href="./index.html">Início</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="formMovie.html">Cadastrar</a>
+                <a class="nav-link" aria-current="page" href="formMovie.html"
+                  >Cadastrar</a
+                >
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="list.html">Listas</a>
@@ -258,6 +258,7 @@
                         class="btn btn-secondary"
                         id="closeModal"
                         data-bs-dismiss="modal"
+                        onclick="clearCharacterForm()"
                       >
                         Cancelar
                       </button>
@@ -276,7 +277,7 @@
 
             <div id="saida"></div>
             <div class="form-group col-md-6 offset-md-8">
-              <button class="btn btn-primary px-4" type="submit">SALVAR</button>
+              <button class="btn btn-primary px-4" type="submit">Registrar</button>
             </div>
           </div>
         </form>
@@ -284,14 +285,17 @@
     </main>
     <footer
       class="text-center text-white fixed-bottom"
-      style="background-color: #21081a"
+      style="background-color: #000000"
     >
       <!-- Grid container -->
       <div class="container p-4"></div>
       <!-- Grid container -->
 
       <!-- Copyright -->
-      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+      <div
+        class="text-center p-3"
+        style="background-color: rgba(5, 1, 121, 0.386)"
+      >
         © 2020 Copyright:
         <a class="text-white" href="https://dbcast.com.br/">DBCast.com.br</a>
       </div>
