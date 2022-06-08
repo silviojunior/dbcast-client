@@ -101,7 +101,7 @@ function renderMovieCard(movie) {
   characters.classList.add("card-body");
 
   let btnCharacters = document.createElement("a");
-  btnCharacters.setAttribute("href", "#");
+  btnCharacters.setAttribute("href", `result.html?movieId=${movie.id}`);
   btnCharacters.classList.add("btn", "btn-primary", "d-grid", "gap-2");
   btnCharacters.textContent = "Personagens";
 
@@ -110,4 +110,28 @@ function renderMovieCard(movie) {
   card.append(cardImg, titleAndSubtitle, movieAttributes, characters);
 
   document.getElementById("listMovies").appendChild(card);
+}
+
+function getFilmography(characterId){
+  axios
+  .get(GET_MOVIES_URL + `/filmography/${characterId}`)
+  .then((response) => {
+    let movies = response.data;
+    movies.forEach(function (obj) {
+      renderMovieCard(obj);
+    });
+  })
+  .catch((error) => console.error(error));
+}
+
+function getMoviesByTitle(title){
+  axios
+  .get(GET_MOVIES_URL + `/byTitle/${title}`)
+  .then((response) => {
+    let movies = response.data;
+    movies.forEach(function (obj) {
+      renderMovieCard(obj);
+    });
+  })
+  .catch((error) => console.error(error));
 }

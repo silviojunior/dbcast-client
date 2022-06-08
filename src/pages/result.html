@@ -17,11 +17,13 @@
       crossorigin="anonymous"
     ></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="../css/register.css" />
+    <link rel="stylesheet" href="../css/main.css" />
     <script src="../js/movie.js"></script>
     <script src="../js/character.js"></script>
-    <link rel="stylesheet" href="../css/main.css" />
   </head>
-  <body onload="getAllContent()">
+
+  <body onload="doSearch()">
     <header>
       <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
         <div class="container-fluid">
@@ -39,12 +41,12 @@
           <div class="collapse navbar-collapse" id="navbarExample01">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item active">
-                <a class="nav-link" aria-current="page" href="./index.html"
-                  >Início</a
-                >
+                <a class="nav-link" href="./index.html">Início</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="./register.html">Cadastrar</a>
+                <a class="nav-link" aria-current="page" href="register.html"
+                  >Cadastrar</a
+                >
               </li>
               <li class="nav-item dropdown">
                 <a
@@ -75,36 +77,20 @@
           </div>
         </div>
       </nav>
-
-      <div class="p-5 text-center bg-light">
-        <h1 class="mb-3">DBCast</h1>
-        <h4 class="mb-3">Filmes & Personagens</h4>
-        <div class="input-group">
-          <input
-            type="search"
-            id="searchField"
-            class="form-control rounded w-50"
-            placeholder="O que gostaria de pesquisar?"
-            aria-label="Buscar"
-            aria-describedby="search-addon"
-            onkeydown="search(event)"
-          />
-          <button type="button" class="btn btn-outline-primary" onclick="search(event)">Buscar</button>
+    </header>
+    <main class="container">
+      <div class="jumbotron jumbotron-fluid row align-items-start">
+        <div class="container">
+          <h1 class="display-4 text-center">Resultado da Busca</h1>
+          <p class="lead text-center">Aqui está o que encontramos:</p>
         </div>
       </div>
-    </header>
-    <main class="container mt-4">
-      <h4 class="text-center">Filmes</h4>
-      <div
-        id="listMovies"
-        class="row row-cols-auto justify-content-md-center"
-      ></div>
-      <hr />
-      <h4 class="text-center">Personagens</h4>
-      <div
-        id="listChars"
-        class="row row-cols-auto justify-content-md-center mt-4"
-      ></div>
+
+      <div class="container mt-4">
+        <div id="listMovies" class="row row-cols-auto justify-content-md-center"></div>
+        <div id="listChars" class="row row-cols-auto justify-content-md-center"></div>
+      </div>
+
     </main>
     <footer
       class="text-center text-white fixed-bottom"
@@ -126,17 +112,26 @@
     </footer>
   </body>
   <script>
-    function getAllContent() {
-      getMovies();
-      getCharacters();
-    }
-    function search(e){
+    function doSearch(){
 
-      let search = document.getElementById("searchField");
-      
-      if(e.keyCode === 13 || e.type === 'click'){
-        window.location.replace(`result.html?query=${search.value}`);
+      let urlVars = getUrlVars()
+
+      if(urlVars.characterId){
+        getFilmography(urlVars.characterId)
+      } else if(urlVars.movieId){
+        getMovieCharacters(urlVars.movieId)
+      }else{
+        getCharactersByName(urlVars.query)
+        getMoviesByTitle(urlVars.query)
       }
+    }
+
+    function getUrlVars() {
+      let vars = {};
+      let parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+          vars[key] = value;
+      });
+      return vars;
     }
   </script>
 </html>
