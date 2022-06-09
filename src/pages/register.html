@@ -17,6 +17,8 @@
       crossorigin="anonymous"
     ></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
     <link rel="stylesheet" href="../css/register.css" />
     <link rel="stylesheet" href="../css/main.css" />
     <script src="../js/movie.js"></script>
@@ -155,7 +157,7 @@
             <div class="row align-items-start mb-3">
               <div class="col-md-5 offset-md-3 ps-1">
                 <input
-                  id="search"
+                  id="searchField"
                   class="form-control mr-sm-2"
                   type="search"
                   placeholder="Encontre personagens"
@@ -167,6 +169,7 @@
                 <button
                   class="btn btn-outline-success my-2 my-sm-0 px-4"
                   type="submit"
+                  onclick="searchCharacter(event)"
                 >
                   Buscar
                 </button>
@@ -178,7 +181,7 @@
 
             <p class="col-md-6 offset-md-6 mt-3 mb-3">OU</p>
 
-            <div class="col-md-6 offset-md-3 mb-3">
+            <div class="col-md-6 offset-md-3 mb-5">
               <button
                 class="btn btn-success w-100"
                 type="button"
@@ -301,8 +304,28 @@
                 </div>
               </div>
             </div>
+            
+            <div id="listSelectedChars" class="row row-align-items-center mb-5 d-none">
+            
+              <div class="col-md-6 offset-md-3 border border-success">
+                <h4 class="text-center">Personagens Selecionados</h4>
+              </div>
 
-            <div id="saida"></div>
+              <table id="tableChars" class="border border-success col-md-6 offset-md-3 mt-3">
+                <thead>
+                  <tr>
+                    <th class="ps-1 px-1" scope="col">#</th>
+                    <th class="ps-1 px-1" scope="col">Nome</th>
+                    <th class="ps-1 px-1" scope="col">Tipo</th>
+                    <th class="ps-1 px-1" scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody id="selectedChars">
+                </tbody>
+              </table>
+
+            </div>
+
             <div class="form-group col-md-6 offset-md-8">
               <button class="btn btn-primary px-4" type="submit">
                 Registrar
@@ -316,14 +339,11 @@
       class="text-center text-white fixed-bottom"
       style="background-color: #000000"
     >
-      <!-- Grid container -->
-      <div class="container p-4"></div>
-      <!-- Grid container -->
 
       <!-- Copyright -->
       <div
         class="text-center p-3"
-        style="background-color: rgba(5, 1, 121, 0.386)"
+        style="background-color: rgba(0, 0, 0)"
       >
         © 2020 Copyright:
         <a class="text-white" href="https://dbcast.com.br/">DBCast.com.br</a>
