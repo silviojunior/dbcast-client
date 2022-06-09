@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="../css/main.css" />
     <script src="../js/movie.js"></script>
     <script src="../js/character.js"></script>
+    <script src="../js/register.js"></script>
   </head>
 
   <body>
@@ -78,6 +79,7 @@
         </div>
       </nav>
     </header>
+
     <main class="container">
       <div class="row vh-100">
         <div class="jumbotron jumbotron-fluid row align-items-start">
@@ -153,10 +155,12 @@
             <div class="row align-items-start mb-3">
               <div class="col-md-5 offset-md-3 ps-1">
                 <input
+                  id="search"
                   class="form-control mr-sm-2"
                   type="search"
                   placeholder="Encontre personagens"
                   aria-label="Encontre personagens"
+                  onkeydown="searchCharacter(event)"
                 />
               </div>
               <div class="col">
@@ -166,6 +170,9 @@
                 >
                   Buscar
                 </button>
+              </div>
+              <div class="col-md-5 offset-md-3 ps-1">
+                <ul class="list-group" id="result"></ul>
               </div>
             </div>
 
