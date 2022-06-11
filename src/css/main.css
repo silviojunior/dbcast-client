@@ -1,4 +1,12 @@
 body {
-  padding: 55px 0 120px 0;
-  margin-bottom: 170px;
+  padding: 55px 0 0 0;
+}
+
+footer {
+  background-color: #000000; 
+  margin-top: 50px;
+}
+
+#nameAndAlsoKnownAsContainer {
+  height: 88px;
 }

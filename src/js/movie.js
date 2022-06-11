@@ -1,21 +1,22 @@
-const GET_MOVIES_URL = "http://localhost:8080/movie";
+const MOVIE_BASE_URL = "http://localhost:8080/movie";
 
 function getMovies() {
-  axios
-    .get(GET_MOVIES_URL)
-    .then((response) => {
-      let movies = response.data;
-      movies.forEach(function (obj) {
-        renderMovieCard(obj);
-      });
-    })
-    .catch((error) => console.error(error));
+  return axios
+        .get(MOVIE_BASE_URL)
+        .then((response) => {
+          return response.data
+        })
+        .catch((error) => console.error(error));
+}
+
+function showMovies(){
+  getMovies().then((movies) => renderAllMovieCards(movies));
 }
 
 function renderMovieCard(movie) {
   //primeira DIV
   let card = document.createElement("div");
-  card.classList.add("card", "mb-4","mx-2");
+  card.classList.add("card", "mb-4", "mx-2");
   card.setAttribute("style", "width: 18rem; padding: 0;");
 
   //Movie Image
@@ -112,26 +113,34 @@ function renderMovieCard(movie) {
   document.getElementById("listMovies").appendChild(card);
 }
 
-function getFilmography(characterId){
-  axios
-  .get(GET_MOVIES_URL + `/filmography/${characterId}`)
-  .then((response) => {
-    let movies = response.data;
-    movies.forEach(function (obj) {
-      renderMovieCard(obj);
-    });
-  })
-  .catch((error) => console.error(error));
+function getFilmography(characterId) {
+  return axios
+    .get(MOVIE_BASE_URL + `/filmography/${characterId}`)
+    .then((response) => {
+      return response.data
+    })
+    .catch((error) => console.error(error));
 }
 
-function getMoviesByTitle(title){
-  axios
-  .get(GET_MOVIES_URL + `/byTitle/${title}`)
-  .then((response) => {
-    let movies = response.data;
-    movies.forEach(function (obj) {
-      renderMovieCard(obj);
-    });
-  })
-  .catch((error) => console.error(error));
+function showFilmography(characterId){
+  getFilmography(characterId).then((movieList) => renderAllMovieCards(movieList));
+}
+
+function getMoviesByTitle(title) {
+  return axios
+        .get(MOVIE_BASE_URL + `/byTitle/${title}`)
+        .then((response) => {
+          return response.data;
+        })
+        .catch((error) => console.error(error));
+}
+
+function showMovieResults(title) {
+  getMoviesByTitle(title).then((movieList) => renderAllMovieCards(movieList));
+}
+
+function renderAllMovieCards(movieList) {
+  movieList.forEach(function (movie) {
+    renderMovieCard(movie);
+  });
 }

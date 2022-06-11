@@ -93,8 +93,7 @@
 
     </main>
     <footer
-      class="text-center text-white fixed-bottom"
-      style="background-color: #000000"
+      class="text-center text-white"
     >
       <!-- Copyright -->
       <div
@@ -112,12 +111,12 @@
       let urlVars = getUrlVars()
 
       if(urlVars.characterId){
-        getFilmography(urlVars.characterId)
+        showFilmography(urlVars.characterId)
       } else if(urlVars.movieId){
-        getMovieCharacters(urlVars.movieId)
+        showMovieCharacters(urlVars.movieId)
       }else{
-        getCharactersByName(urlVars.query)
-        getMoviesByTitle(urlVars.query)
+        showCharacterResults(urlVars.query)
+        showMovieResults(urlVars.query)
       }
     }
 

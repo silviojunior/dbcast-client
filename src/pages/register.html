@@ -21,8 +21,6 @@
     
     <link rel="stylesheet" href="../css/register.css" />
     <link rel="stylesheet" href="../css/main.css" />
-    <script src="../js/movie.js"></script>
-    <script src="../js/character.js"></script>
     <script src="../js/register.js"></script>
   </head>
 
@@ -83,7 +81,7 @@
     </header>
 
     <main class="container">
-      <div class="row vh-100">
+      <div class="row">
         <div class="jumbotron jumbotron-fluid row align-items-start">
           <div class="container">
             <h1 class="display-4 text-center">CADASTRAR</h1>
@@ -138,8 +136,6 @@
                 type="text"
                 class="form-control"
                 id="iptBudget"
-                name="ipt-budget"
-                data-type="currency" 
                 placeholder=" $1,000,000.00"
                 maxlength="20"
               />
@@ -236,6 +232,17 @@
                               id="iptName"
                               name="iptName"
                               placeholder="Qual o nome do personagem?"
+                            />
+                          </div>
+                          <div class="form-group col-md-10 offset-md-1 mb-3">
+                            <label for="iptAlsoKnownAs">Também conhecido como:</label>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="iptAlsoKnownAs"
+                              name="iptAlsoKnownAs"
+                              maxlength="33"
+                              placeholder="O personagem tem algum codinome?"
                             />
                           </div>
                           <div class="form-group col-md-4 offset-md-1 mb-3">
@@ -339,7 +346,7 @@
             </div>
 
             <div class="form-group col-md-6 offset-md-8">
-              <button class="btn btn-primary px-4" type="submit">
+              <button class="btn btn-primary px-4" type="submit" onclick="saveMovie()">
                 Registrar
               </button>
             </div>
@@ -348,14 +355,13 @@
       </div>
     </main>
     <footer
-      class="text-center text-white fixed-bottom"
-      style="background-color: #000000"
+      class="text-center text-white"
     >
 
       <!-- Copyright -->
       <div
         class="text-center p-3"
-        style="background-color: rgba(0, 0, 0)"
+        style="background-color: rgba(0, 0, 0);"
       >
         © 2020 Copyright:
         <a class="text-white" href="https://dbcast.com.br/">DBCast.com.br</a>
