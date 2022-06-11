@@ -81,3 +81,9 @@ input[type="file" i] {
   flex: 0 0 9.166%;
   max-width: 9.166%;
 }
+
+.ipt-budget {
+  width: 13%;
+  flex: 0 0 13%;
+  max-width: 13%;
+}
