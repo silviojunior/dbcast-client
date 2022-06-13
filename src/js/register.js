@@ -291,6 +291,7 @@ function saveCharacter() {
 
 function clearCharacterForm() {
   iptName.value = "";
+  iptAlsoKnownAs.value = "";
   iptCharacterTypes.value = 0;
   iptDescription.value = "";
   iptCustomFileChar.files[0] = "";
