@@ -4,6 +4,7 @@ const MOVIE_BASE_URL = "http://localhost:8080/movie";
 function saveMovie() {
   let fdata = new FormData();
 
+  let _id = iptId.value;
   let _title = iptTitle.value;
   let _subtitle = iptSubtitle.value;
   let _releaseDate = iptReleaseDate.value;
@@ -12,6 +13,7 @@ function saveMovie() {
   let _image = iptCustomFile.files[0];
 
   let movie = {
+    id: _id ? _id : null,
     title: _title,
     subtitle: _subtitle,
     releaseDate: _releaseDate,
@@ -25,16 +27,84 @@ function saveMovie() {
   fdata.append("movie", movieBody);
   fdata.append("image", _image);
 
-  axios
-    .post(MOVIE_BASE_URL, fdata)
-    .then(function (response) {
-      if (response.status >= 200 && response.status < 300) {
+  let httpMethod = _id ? 'PUT' : 'POST';
+  
+    axios({
+      method: httpMethod,
+      url: MOVIE_BASE_URL,
+      data: fdata
+    }).then(function (response) {
+      if (httpMethod == "POST" 
+          && response.status >= 200 
+          && response.status < 300) {
         window.location.replace("index.html");
+      }else{
+        window.location.replace("movies.html");
       }
     })
     .catch(function (error) {
       console.error(error);
     });
+}
+
+function getMovieById(movieId){
+  return axios
+    .get(MOVIE_BASE_URL + `/${movieId}`)
+    .then((response) =>{
+      return response.data;
+    })
+    .catch((error) => console.error(error));
+}
+
+function getMovieCharacters(movieId) {
+  return axios
+    .get(CHAR_BASE_URL + `/movieCharacters/${movieId}`)
+    .then((response) => {
+      return response.data;
+    })
+    .catch((error) => console.error(error));
+}
+
+function fillMovieForm(movie){
+  iptId.value = movie.id;
+  iptTitle.value = movie.title;
+  iptSubtitle.value = movie.subtitle;
+  iptReleaseDate.value = movie.releaseDate;
+  iptDirection.value = movie.direction;
+  iptBudget.value = movie.budget;
+
+  getMovieCharacters(movie.id)
+  .then((characters) => { 
+      characters.forEach(function(character){
+        selectCharacter(character);
+        storeCharacter(character);
+      })
+    }
+  )
+}
+
+function loadMovieToEdit(){
+  let urlVars = getUrlVars();
+
+  if(urlVars.movie){
+    getMovieById(urlVars.movie)
+    .then((movie) => {
+      fillMovieForm(movie);
+      changeSubmitBtnName();
+    })
+  }
+}
+
+function getUrlVars() {
+  let vars = {};
+  let parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+      vars[key] = value;
+  });
+  return vars;
+}
+
+function changeSubmitBtnName(){
+  btnSubmit.innerHTML = "Atualizar";
 }
 
 /** CHARACTER **/
@@ -304,4 +374,5 @@ window.onload = function () {
       clearCharSearchResultList();
     });
   clearStoredCharList();
+  loadMovieToEdit();
 };

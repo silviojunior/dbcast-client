@@ -9,6 +9,17 @@ function getMovies() {
         .catch((error) => console.error(error));
 }
 
+function removeMovie(movieId){
+  deleteMovie(movieId)
+}
+
+function deleteMovie(movieId){
+  axios
+    .delete(MOVIE_BASE_URL + `/${movieId}`)
+    .then(location.reload(true))
+    .catch((error) => console.error(error));
+}
+
 function showMovies(){
   getMovies().then((movies) => renderAllMovieCards(movies));
 }
@@ -97,20 +108,63 @@ function renderMovieCard(movie) {
 
   movieAttributes.append(releaseDateLi, directionLi, budgetLi);
 
-  //Button Related Movies
-  let characters = document.createElement("div");
-  characters.classList.add("card-body");
+  //Actions
+
+  const MOVIE_PAGE = "/src/pages/movies.html";
+
+  let actions = document.createElement("div");
+  actions.classList.add("card-body", "row", "justify-content-around");
 
   let btnCharacters = document.createElement("a");
-  btnCharacters.setAttribute("href", `result.html?movieId=${movie.id}`);
-  btnCharacters.classList.add("btn", "btn-primary", "d-grid", "gap-2");
+  btnCharacters.setAttribute(
+    "href", 
+    `result.html?movieId=${movie.id}`
+  );
+  btnCharacters.classList.add("col", "btn", "btn-primary", "mx-2");
   btnCharacters.textContent = "Personagens";
 
-  characters.appendChild(btnCharacters);
+  if(window.location.pathname == MOVIE_PAGE){
+    btnCharacters.classList.remove("col");
+    btnCharacters.classList.remove("mx-2");
+    btnCharacters.classList.add("col-8");
+    
+    let btnEdit = document.createElement("button");
+    btnEdit.setAttribute("type", "button");
+    btnEdit.setAttribute("style", "max-width: 35px;");
+    btnEdit.setAttribute("id", "btnEditMovie");
+    btnEdit.setAttribute("onclick", `searchToEdit(${movie.id})`);
+    btnEdit.classList.add("col", "btn", "btn-outline-warning", "btn-sm");
 
-  card.append(cardImg, titleAndSubtitle, movieAttributes, characters);
+    let iconEdit = document.createElement("i");
+    iconEdit.classList.add("fa-solid", "fa-pen");
+
+    btnEdit.append(iconEdit);
+
+    let btnRemove = document.createElement("button");
+    btnRemove.setAttribute("type", "button");
+    btnRemove.setAttribute("style", "max-width: 35px;");
+    btnRemove.setAttribute("id", "btnRemoveMovie");
+    btnRemove.setAttribute("onclick", `removeMovie(${movie.id})`);
+    btnRemove.classList.add("col", "btn", "btn-outline-danger", "btn-sm");
+
+    let iconRemove = document.createElement("i");
+    iconRemove.classList.add("fa-solid", "fa-trash-can");
+    btnRemove.append(iconRemove);
+
+    actions.appendChild(btnCharacters);
+    actions.appendChild(btnEdit);
+    actions.appendChild(btnRemove);
+  }else{
+    actions.appendChild(btnCharacters);
+  }
+
+  card.append(cardImg, titleAndSubtitle, movieAttributes, actions);
 
   document.getElementById("listMovies").appendChild(card);
+}
+
+function searchToEdit(movieId){
+  window.location.replace(`register.html?movie=${movieId}`);
 }
 
 function getFilmography(characterId) {
